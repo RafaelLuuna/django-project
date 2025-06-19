@@ -1,22 +1,36 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.http import require_safe
+from django.views.decorators.http import require_http_methods
+from django.http import HttpResponseForbidden
 
 from django.contrib.auth import logout
+from authentication import api
 
 from . import forms
 
-@require_safe
+@require_http_methods(['GET','POST'])
 def login(request):
-    logout(request)
 
-    loginForm = forms.LoginForm()
-    context = {
-        'form': loginForm,
-    }
+    if request.method == 'POST':
+        loginForm = forms.LoginForm(request.POST)
+        response = api.LoginApi(request, loginForm)
 
-    return render(request, 'auth/login.html', context)
+        
+    elif request.method == 'GET':
+        logout(request)
+        loginForm = forms.LoginForm()
+        context = {
+            'form': loginForm,
+        }
+        
+        response = render(request, 'auth/login.html', context)
 
-@require_safe
+    else:
+        response = HttpResponseForbidden('Não era pra você chegar aqui nem por milagre, pilantrinha...')
+
+
+    return response
+
+@require_http_methods(['GET','POST'])
 def cadastro(request):
     cadastroForm = forms.CadastroForm()
     context = {

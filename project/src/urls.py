@@ -27,5 +27,4 @@ urlpatterns = [
     path('', index_view),
     path('', include('app.backend.site.urls')),
     path('', include('authentication.urls')),
-    path('auth/', include('authentication.api.urls')),
 ]
