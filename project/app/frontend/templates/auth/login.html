@@ -3,9 +3,10 @@
 
 <h1>Faça o login</h1>
 
-<form action="auth/login" method="POST">
+<form action="/auth/login/" method="POST">
     {% csrf_token %}
     {{ form }}
+    <button type="submit">Acessar</button>
 </form>
 
 {% endblock %}

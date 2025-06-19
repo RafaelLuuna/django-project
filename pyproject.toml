@@ -19,3 +19,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 package-mode = false
+
+
+
+[tool.kolo]
+
+lightweight_repr = true
+
+[tool.kolo.filters]
+
+ignore_request_paths = ["/static/", "favicon.ico"]
