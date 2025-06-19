@@ -37,29 +37,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-allauth"
-version = "65.9.0"
-description = "Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication."
-optional = false
-python-versions = ">=3.8"
-groups = ["main"]
-files = [
-    {file = "django_allauth-65.9.0.tar.gz", hash = "sha256:a06bca9974df44321e94c33bcf770bb6f924d1a44b57defbce4d7ec54a55483e"},
-]
-
-[package.dependencies]
-asgiref = ">=3.8.1"
-Django = ">=4.2.16"
-
-[package.extras]
-idp-oidc = ["oauthlib (>=3.2.2,<4)", "pyjwt[crypto] (>=2.0,<3)"]
-mfa = ["fido2 (>=1.1.2,<3)", "qrcode (>=7.0.0,<9)"]
-openid = ["python3-openid (>=3.0.8,<4)"]
-saml = ["python3-saml (>=1.15.0,<2.0.0)"]
-socialaccount = ["pyjwt[crypto] (>=2.0,<3)", "requests (>=2.0.0,<3)", "requests-oauthlib (>=0.3.0)"]
-steam = ["python3-openid (>=3.0.8,<4)"]
-
-[[package]]
 name = "sqlparse"
 version = "0.5.3"
 description = "A non-validating SQL parser."
@@ -91,4 +68,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "a4b88669b58955c378c35dba24774d01ddbb917e837fd36135099edfabbd9ca7"
+content-hash = "40e44b1ff89beb1c7709de1c686a1d03c2d920e2e0195efa67ac1e4d3675db07"
