@@ -19,13 +19,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# App imports
-from app.backend.site import views as site_views
-from authentication import views as auth_views
+# Index View
+from app.backend.site.views import index as index_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', site_views.index),
+    path('', index_view),
     path('', include('app.backend.site.urls')),
     path('', include('authentication.urls')),
     path('auth/', include('authentication.api.urls')),
