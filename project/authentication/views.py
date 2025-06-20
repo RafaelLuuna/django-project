@@ -11,15 +11,15 @@ from . import forms
 def login(request):
 
     if request.method == 'POST':
-        loginForm = forms.LoginForm(request.POST)
-        response = api.LoginApi(request, loginForm)
+        form = forms.LoginForm(request.POST)
+        response = api.LoginApi(request, form)
 
         
     elif request.method == 'GET':
         logout(request)
-        loginForm = forms.LoginForm()
+        form = forms.LoginForm()
         context = {
-            'form': loginForm,
+            'form': form,
         }
         
         response = render(request, 'auth/login.html', context)
@@ -32,8 +32,26 @@ def login(request):
 
 @require_http_methods(['GET','POST'])
 def cadastro(request):
-    cadastroForm = forms.CadastroForm()
-    context = {
-        'form': cadastroForm,
-    }
-    return render(request, 'auth/cadastro.html', context)
+
+    if request.method == 'POST':
+        form = forms.CadastroForm(request.POST)
+        response = api.CadastroApi(request, form)
+
+    elif request.method == 'GET':
+        logout(request)
+        form = forms.CadastroForm()
+        context = {
+            'form': form,
+        }
+        
+        response = render(request, 'auth/cadastro.html', context)
+
+    else:
+        response = HttpResponseForbidden('Não era pra você chegar aqui nem por milagre, pilantrinha...')
+    
+
+    return response
+
+
+def logout(request):
+    return api.LogoutApi(request)

@@ -3,9 +3,12 @@
 
 <h1>Cadastre-se, porra</h1>
 
-<form action="/singup/" method="POST">
-    {{ form }}
+<form action="/cadastro/" method="POST">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">Cadastrar</button>
 </form>
 
+<p>Já está cadastrado? <span><a href="{% url 'login' %}">Clique aqui para fazer login</a></span></p>
 
 {% endblock %}
