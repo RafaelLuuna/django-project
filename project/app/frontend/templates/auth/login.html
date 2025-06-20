@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="card-container">
     <div class="card-login">
-        <h1>Faça o login</h1>
-               
+        <img src="{% static 'img/logo4x4.png' %}" alt="logotipo" class="logo">
+        
+        <h1>Salve salve!</h1>
+        
         <form action="/login/" method="POST">
             {% csrf_token %}
             {{ form.as_div }}
