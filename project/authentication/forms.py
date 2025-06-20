@@ -10,7 +10,7 @@ class CadastroForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['confirm_password'] = forms.CharField(max_length="100",widget=forms.PasswordInput())
-        self.fields['username'].help_text = None
+        # self.fields['username'].help_text = None
 
     def clean(self):
         cleaned_data = super().clean()
@@ -18,7 +18,7 @@ class CadastroForm(forms.ModelForm):
         confirm_password = cleaned_data['confirm_password']
 
         if confirm_password and password and confirm_password != password:
-            self.add_error('confirm_password','As senhas são diferentes')
+            self.add_error('confirm_password',"Password doesn't match")
 
 
     class Meta:

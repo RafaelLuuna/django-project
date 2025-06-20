@@ -1,0 +1,33 @@
+.card-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.card-login{
+    @extend .card;
+    width: 500px;
+    padding: 2rem 1rem 2rem 1rem;
+    margin: auto;
+    text-align: center;
+    
+    animation: rise-up 0.7s ease-out;
+
+    h1, h2, h3, h4, h5, h6{
+        margin-bottom: 1rem;
+    }
+
+    &::before{
+        content: "";
+    }
+    &::after{
+        content: "";
+    }
+
+}
+
+.card-cadastro{
+    @extend .card-login;
+}

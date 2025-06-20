@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Cadastre-se, porra</h1>
+<div class="card-container">
+    <div class="card-cadastro">
+        <h1>Cadastre-se, porra</h1>
+        
+        <form action="/cadastro/" method="POST">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit">Cadastrar</button>
+        </form>
+        
+        <hr>
 
-<form action="/cadastro/" method="POST">
-    {% csrf_token %}
-    {{ form.as_div }}
-    <button type="submit">Cadastrar</button>
-</form>
-
-<p>Já está cadastrado? <span><a href="{% url 'login' %}">Clique aqui para fazer login</a></span></p>
+        <p>Já está cadastrado? <span><a href="{% url 'login' %}">Clique aqui para fazer login</a></span></p>
+    </div>
+</div>
 
 {% endblock %}
