@@ -25,8 +25,9 @@ def LoginApi(request, form):
         redirectUrl = ROLES[User.role]['default_page']
         return HttpResponseRedirect(redirectUrl)
 
-    # Por padrão, caso a API não consiga encontrar o usuário, ela incluirá um erro no formulário e renderizará a view de login
-    form.add_error(None, 'Não foi possível realizar o login')
+
+    # Por padrão, caso a API não consiga encontrar o usuário, renderizará a view de login
+    form.add_error(None, 'Usuário ou senha inválidos.')
     context = {
         'form': form,
     }
@@ -47,7 +48,13 @@ def CadastroApi(request, form):
         User.save()
 
         messages.success(request,'Usuário cadastrado com sucesso!')
-        return redirect('/login/')
+
+        form_login = forms.LoginForm()
+        context = {
+            'form': form_login,
+        }
+
+        return render(request, 'auth/login.html', context)
 
 
     # Por padrão, caso a API não consiga cadastrar o usuário, ela incluirá um erro no formulário e renderizará a view de cadastro
@@ -57,7 +64,7 @@ def CadastroApi(request, form):
     }
     return render(request, 'auth/cadastro.html', context)
 
-@require_POST
+
 def LogoutApi(request):
     logout(request)
     return redirect(settings.LOGIN_URL)

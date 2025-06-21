@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseForbidden
 
-from django.contrib.auth import logout
 from authentication import api
 
 from . import forms
@@ -16,7 +15,6 @@ def login(request):
 
         
     elif request.method == 'GET':
-        logout(request)
         form = forms.LoginForm()
         context = {
             'form': form,
@@ -30,6 +28,7 @@ def login(request):
 
     return response
 
+
 @require_http_methods(['GET','POST'])
 def cadastro(request):
 
@@ -38,7 +37,6 @@ def cadastro(request):
         response = api.CadastroApi(request, form)
 
     elif request.method == 'GET':
-        logout(request)
         form = forms.CadastroForm()
         context = {
             'form': form,

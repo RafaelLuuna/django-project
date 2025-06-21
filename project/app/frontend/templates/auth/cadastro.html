@@ -4,6 +4,17 @@
 <div class="card-container">
     <div class="card-cadastro">
         <h1>Cadastre-se, porra</h1>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         
         <form action="/cadastro/" method="POST">
             {% csrf_token %}

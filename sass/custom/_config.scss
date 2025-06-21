@@ -2,14 +2,14 @@
 @import "../bootstrap/scss/variables";
 
 $primary: #717533;
-$secondary: #412925;
+$secondary: #ac311b;
 $tertiary: #864E63;
 $light-gray: #A3A192;
 $success: #368f19;
-$danger: #7E2E29;
+$danger: #9a0808;
 $dark: #170f0d;
 
-$min-contrast-ratio: 2;
+$min-contrast-ratio: 10;
 
 $theme-colors: map-merge($theme-colors, (
   "primary": $primary,

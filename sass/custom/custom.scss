@@ -1,10 +1,5 @@
+@import './animations/animations';
 @import 'config';
-@import 'card';
 @import 'geral';
-
-
-@keyframes rise-up{
-    from{transform: translate(0px,20px); opacity: 0%;}
-    to{transform: translate(0px,0px); opacity: 100%;}
-}
+@import 'card';
 

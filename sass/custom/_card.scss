@@ -7,8 +7,19 @@
     align-items: center;
 }
 
-.card-login{
+@mixin template-card{
     @extend .card;
+    @include animation(
+                        $id: 'card-login',
+                        $animation: 'pulse',
+                        $duration: 2,
+                        $delay: 8,
+                        $animation-iteration-count: infinite,
+                        $animation-timing-function: ease,
+                        $delay-position: 'end'
+                    );
+                    
+    
     background-color: map-get($map: $theme-colors, $key: 'light');
     width: 500px;
     padding: 2rem 1rem 2rem 1rem;
@@ -20,16 +31,13 @@
     align-items: center;
     text-align: center;
     
-    animation: rise-up 0.7s ease-out;
-
-    h1, h2, h3, h4, h5, h6{
+    a, h1, h2, h3, h4, h5, h6{
         margin-bottom: 1rem;
+        color: map-get($map: $theme-colors, $key: 'dark');
     }
 
-    .logo{
-        max-width: 200px;
-        max-height: 200px;
-        border-radius: 100px;
+    &-cadastro{
+        display: block;
     }
 
     &::before{
@@ -41,6 +49,30 @@
 
 }
 
+.card-login{
+    @include template-card();
+    .logo{
+        @extend .shadow-lg;
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 100px;
+        border: solid map-get($map: $theme-colors, $key: 'dark') 3px;
+
+        @include animation(
+                            $id: 'card-login-logo',
+                            $animation: 'shake-shake',
+                            $duration: 1,
+                            $delay: 9,
+                            $animation-iteration-count: infinite,
+                            $animation-timing-function: ease,
+                            $delay-position: 'end'
+                        );
+    }
+    form{
+        width: 250px;
+    }
+}
+
 .card-cadastro{
-    @extend .card-login;
+    @include template-card();
 }

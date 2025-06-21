@@ -1,0 +1,71 @@
+$animations: (
+    'rise-up': (
+        'keyframe-list': (
+            (
+                'progress': 0,
+                'props': (
+                    'transform': translate(0px,20px),
+                    'opacity': 0
+                )
+            ),
+            (
+                'progress': 100,
+                'props': (
+                    'transform': translate(0px,0px),
+                    'opacity': 1
+                )
+            )
+        )
+    ),
+    'pulse': (
+        'keyframe-list': (
+            (
+                'progress': 0,
+                'props': (
+                    'transform': scale(1)
+                )
+            ),
+            (
+                'progress': 50,
+                'props': (
+                    'transform': scale(1.008)
+                )
+            ),
+            (
+                'progress': 100,
+                'props': (
+                    'transform': scale(1)
+                )
+            )
+        )
+    ),
+    'shake-shake': (
+        'keyframe-list': (
+            (
+                'progress': 0,
+                'props': (
+                    'transform': translate(0px, 0px) rotate(0deg)
+                )
+            ),
+            (
+                'progress': 20,
+                'props': (
+                    'transform': translate(2px, 2px) rotate(-1deg)
+                )
+            ),
+            (
+                'progress': 60,
+                'props': (
+                    'transform': translate(1px, -1px) rotate(1deg)
+                )
+            ),
+            (
+                'progress': 100,
+                'props': (
+                    'transform': translate(0px, 0px) rotate(0deg)
+                )
+            )
+        )
+    )
+
+);

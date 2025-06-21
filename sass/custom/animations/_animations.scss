@@ -1,0 +1,97 @@
+@import 'templates';
+
+
+
+@function step($duration, $total-duration ,$progress, $delay-position: 'start'){ 
+    @if $progress < 1{
+        $progress: 0.01;
+    }
+    
+    $delay: $total-duration - $duration;
+    $rate: $duration / $total-duration;
+    $progress: ($progress * $rate);
+    
+    @if $delay-position == 'start' { 
+        $progress: ($delay / $total-duration)+$progress;
+    }
+    @if $delay-position == 'end' {
+        $progress: $progress / 100;
+    }
+    
+    @if $progress > 100{
+        $progress: 1;
+    }
+    
+    @return percentage($progress);
+}
+
+@mixin render($animation-data){
+    $animation-id: map-get($map: $animation-data, $key: 'id');
+    $animation-kf-id: map-get($map: $animation-data, $key: 'kf-id');
+    
+    $animation-name: map-get($map: $animation-data, $key: 'animation');
+    $animation-duration: map-get($map: $animation-data, $key: 'duration');
+    $animation-delay: map-get($map: $animation-data, $key: 'delay');
+    $animation-total-duration: map-get($map: $animation-data, $key: 'total-duration');
+    
+    $animation-delay-position: map-get($map: $animation-data, $key: 'delay-position');
+
+    $current-animation: map-get($map: $animations, $key: $animation-name); 
+    $keyframes-list: map-get($map: $current-animation, $key: 'keyframe-list');
+
+    @keyframes #{$animation-kf-id}
+    {
+
+        @each $step-item in $keyframes-list{
+            $progress: map-get($map: $step-item, $key: 'progress');
+            $props: map-get($map: $step-item, $key: 'props');
+            #{step($animation-duration, $animation-total-duration, $progress, $animation-delay-position)} {
+                @each $prop-name, $prop-value in $props{
+                    #{$prop-name}: $prop-value;
+                }
+            }
+        }
+    }
+
+    content: $animation-delay-position;
+}
+
+
+@mixin animation(
+        $id,
+        $animation,
+        $duration,
+        $delay: 0,
+        $animation-iteration-count: 1,
+        $animation-direction: normal,
+        $animation-timing-function: linear,
+        $animation-fill-mode: forwards,
+        $delay-position: 'start'
+    ){
+    
+    $total-duration: $duration + $delay;
+    $kf-id: #{$id}-#{$animation};
+    
+    $animation-data: (
+        'id': $id,
+        'animation': $animation,
+        'kf-id': $kf-id,
+        'duration': $duration,
+        'delay': $delay,
+        'total-duration': $duration + $delay,
+        'delay-position': $delay-position
+    );
+
+    @include render($animation-data);
+
+    
+    animation: #{$kf-id};
+    animation-duration: #{$total-duration}s;
+    animation-iteration-count: $animation-iteration-count;
+    animation-direction: $animation-direction;
+    animation-timing-function: $animation-timing-function;
+    animation-fill-mode: $animation-fill-mode;
+    
+        
+}
+
