@@ -1,71 +1,20 @@
-$animations: (
-    'rise-up': (
-        'keyframe-list': (
-            (
-                'progress': 0,
-                'props': (
-                    'transform': translate(0px,20px),
-                    'opacity': 0
-                )
-            ),
-            (
-                'progress': 100,
-                'props': (
-                    'transform': translate(0px,0px),
-                    'opacity': 1
-                )
-            )
-        )
-    ),
-    'pulse': (
-        'keyframe-list': (
-            (
-                'progress': 0,
-                'props': (
-                    'transform': scale(1)
-                )
-            ),
-            (
-                'progress': 50,
-                'props': (
-                    'transform': scale(1.008)
-                )
-            ),
-            (
-                'progress': 100,
-                'props': (
-                    'transform': scale(1)
-                )
-            )
-        )
-    ),
-    'shake-shake': (
-        'keyframe-list': (
-            (
-                'progress': 0,
-                'props': (
-                    'transform': translate(0px, 0px) rotate(0deg)
-                )
-            ),
-            (
-                'progress': 20,
-                'props': (
-                    'transform': translate(2px, 2px) rotate(-1deg)
-                )
-            ),
-            (
-                'progress': 60,
-                'props': (
-                    'transform': translate(1px, -1px) rotate(1deg)
-                )
-            ),
-            (
-                'progress': 100,
-                'props': (
-                    'transform': translate(0px, 0px) rotate(0deg)
-                )
-            )
-        )
-    )
+@import'./templates/rise';
+@import'./templates/pulse';
+@import'./templates/shake-shake';
+@import'./templates/header';
 
+@function map-collect($maps...) {
+  $collection: ();
+
+  @each $map in $maps {
+    $collection: map-merge($collection, $map);
+  }
+  @return $collection;
+}
+
+$animations: map-collect(
+    $animations-rise,
+    $animations-pulse,
+    $animations-shake-shake,
+    $animations-header,
 );

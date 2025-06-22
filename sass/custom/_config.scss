@@ -3,13 +3,14 @@
 
 $primary: #717533;
 $secondary: #ac311b;
-$tertiary: #864E63;
+$tertiary: #585642;
 $light-gray: #A3A192;
 $success: #368f19;
 $danger: #9a0808;
 $dark: #170f0d;
 
 $min-contrast-ratio: 10;
+
 
 $theme-colors: map-merge($theme-colors, (
   "primary": $primary,

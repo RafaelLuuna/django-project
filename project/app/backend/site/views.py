@@ -7,4 +7,5 @@ def index(request):
 
 @login_required
 def home(request):
-    return render(request, 'site/home.html')
+    context = {}
+    return render(request, 'site/home.html', context)

@@ -1,5 +1,11 @@
 @import './animations/animations';
 @import 'config';
-@import 'geral';
 @import 'card';
+@import 'geral';
+@import 'header';
+@import 'widgets';
 
+
+.row{
+    @extend .gap-3;
+}

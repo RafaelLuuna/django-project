@@ -1,16 +1,25 @@
-
 {% load static %}
-{% block header %}
 
-<div class="header">
-    <a href="{{ url 'home' }}"><img src="{% static 'img/logo4x4.png' %}" alt=""></a>
+<div class="header-container" id="header">
+    <div class="header">
+        <a href="{% url 'home' %}"><img class="logo" src="{% static 'img/logo4x4.png' %}" alt=""></a>
+        <div class="user-info">
+            <p>Bem vindo, {{ request.user.get_full_name }}!</p>
+            <a href="{% url 'logout' %}" class="btn rounded-pill btn-dark">Sair</a>
+        </div>
+    </div>
     <div class="nav-bar">
-        <ul class="nav-links">
-            <li>nada</li>
-            <li>lugar nenhum</li>
-            <li>vazio</li>
-        </ul>
+        <button class="fa-solid fa-bars" data-bs-toggle="collapse" data-bs-target="#nav-links" aria-expanded="true" aria-controls="collapseExample"></button>
+        <div class="collapse" id="nav-links">
+            <ul class="nav-links">
+                <li class="nav-link-1"><div><a href="">nada</a></div></li>
+                <li class="nav-link-2"><div><a href="">lugar nenhum</a></div></li>
+                <li class="nav-link-3"><div><a href="">neca de pitipiriba</a></div></li>
+                <li class="nav-link-4"><div><a href="">não tem link</a></div></li>
+                <li class="nav-link-5"><div><a href="">home, talvez</a></div></li>
+                <li class="nav-link-6"><div><a href="">sla...</a></div></li>
+            </ul>
+        </div>
     </div>
 </div>
 
-{% endblock %}

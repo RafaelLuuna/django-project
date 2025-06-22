@@ -1,0 +1,86 @@
+@mixin widget-template($i){
+    $col-size: percentage(((100/12)/100)*$i);
+    @extend .col-#{$i};
+    width: calc($col-size - $spacer);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p, a, h1, h2, h3, h4, h5, h6 {
+        width: 100%;
+    }
+
+    img{
+        @extend .shadow;
+        width: 100%;
+        border-radius: 10px;
+    }
+    
+}
+
+@for $i from 1 through 12{
+
+
+
+    .widget-#{$i}{
+        @include widget-template($i);
+        color: map-get($map: $theme-colors, $key: 'light');
+        @include animation-cascade(
+                            $group-name: 'container-titles',
+                            $group-size: 12,
+                            $animation: 'rise-right',
+                            $duration: 2,
+                            $animation-type: 'sync',
+                            $animation-timing-function: ease,
+                        );
+    
+        h1{
+            @extend .container-titles-1;
+        }
+        h4{
+            @extend .container-titles-2;
+        }
+        p{
+            @extend .container-titles-3;
+        }
+        img{
+            @extend .container-titles-1;
+        }
+    }
+
+
+
+    .widget-card-#{$i}{
+        @include widget-template($i);
+        @include template-card();
+        @include animation-cascade(
+                            $group-name: 'widget-card-titles',
+                            $group-size: 3,
+                            $animation: 'rise-up',
+                            $duration: 0.8,
+                            $animation-type: 'cascade',
+                            $animation-timing-function: ease,
+                        );
+    
+        h1{
+            @extend .widget-card-titles-1;
+        }
+        h4{
+            @extend .widget-card-titles-2;
+        }
+        p{
+            @extend .widget-card-titles-3;
+        }
+    }
+
+    .widget-banner-#{$i}{
+        @include widget-template($i);
+        img{
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+    }
+}
