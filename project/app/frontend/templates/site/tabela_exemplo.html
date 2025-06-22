@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'site/common/header.html' %}
+{% include 'site/common/footer.html' %}
+
+<div class="container">
+    <div class="row">
+            <div class="widget-12">
+                <h1>Tabela de exemplo</h1>
+
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Função</th>
+                    </thead>
+                    <tbody>
+                        {% for content in contents %}
+                            <tr>
+                                <td> {{ content.nome }} </td>
+                                <td> {{ content.email }} </td>
+                                <td> {{ content.funcao }} </td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+
+
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}
